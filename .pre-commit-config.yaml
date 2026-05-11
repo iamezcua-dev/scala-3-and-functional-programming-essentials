@@ -1,0 +1,53 @@
+repos:
+  - hooks:
+      - id: trailing-whitespace
+      - id: end-of-file-fixer
+      - id: check-yaml
+      - id: check-added-large-files
+      - id: check-merge-conflict
+      - id: mixed-line-ending
+    repo: https://github.com/pre-commit/pre-commit-hooks
+    rev: v4.6.0
+  - hooks:
+      - id: typos
+    repo: https://github.com/crate-ci/typos
+    rev: v1.24.6
+  - hooks:
+      - entry: scalafmt --test
+        id: scalafmt
+        language: system
+        name: scalafmt
+        types_or:
+          - scala
+          - sbt
+    repo: local
+  - hooks:
+      - args:
+          - feat
+          - fix
+          - docs
+          - style
+          - refactor
+          - perf
+          - test
+          - build
+          - ci
+          - revert
+        id: conventional-pre-commit
+        stages:
+          - commit-msg
+    repo: https://github.com/compilerla/conventional-pre-commit
+    rev: v3.4.0
+  - hooks:
+      - id: commitizen
+      - id: commitizen-branch
+        stages:
+          - pre-push
+    repo: https://github.com/commitizen-tools/commitizen
+    rev: v4.15.1
+  - hooks:
+      - id: gitlint
+        stages:
+          - commit-msg
+    repo: https://github.com/jorisroovers/gitlint
+    rev: v0.19.1
