@@ -20,6 +20,17 @@ repos:
         types_or:
           - scala
           - sbt
+      - id: gitlint-rules-tests
+        name: gitlint custom rules tests
+        entry: pytest .gitlint-rules/tests
+        language: python
+        additional_dependencies:
+          - gitlint>=0.19.1
+          - pytest>=8.3.0
+        pass_filenames: false
+        files: ^\.gitlint-rules/
+        stages:
+          - pre-commit
     repo: local
   - hooks:
       - args:
