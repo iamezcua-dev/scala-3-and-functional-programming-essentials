@@ -2,7 +2,6 @@ name: pre-commit
 
 on:
   push:
-    branches: [main]
   pull_request:
 
 jobs:
@@ -10,6 +9,8 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
 
       - uses: actions/setup-python@v5
         with:
@@ -30,3 +31,9 @@ jobs:
           key: pre-commit-${{ runner.os }}-${{ hashFiles('.pre-commit-config.yaml') }}
 
       - uses: pre-commit/action@v3.0.1
+
+      - name: Validate PR commit messages with strict gitlint
+        if: github.event_name == 'pull_request'
+        run: |
+          pip install 'gitlint>=0.19.1'
+          gitlint --commits "origin/${{ github.base_ref }}..HEAD" -C .gitlint.ci
