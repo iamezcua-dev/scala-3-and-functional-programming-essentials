@@ -10,3 +10,5 @@ lazy val root = project
 
     libraryDependencies += "org.scalameta" %% "munit" % "1.3.0" % Test
   )
+
+scalacOptions += "-deprecation"
