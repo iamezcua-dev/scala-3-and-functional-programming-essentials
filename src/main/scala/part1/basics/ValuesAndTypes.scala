@@ -1,4 +1,5 @@
-package com.rockthejvm.part1.basics
+package com.rockthejvm
+package part1.basics
 
 object ValuesAndTypes {
   def main(args: Array[String]): Unit = {
